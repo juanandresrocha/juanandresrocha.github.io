@@ -30,5 +30,23 @@ class HabitTest extends TestCase
 
         $this->assertEquals($habit->getType(), 'Good');
     }
+    
+    public function testThatWeCanGetHabitDifficulty() 
+    {
+        $habit = new \App\Models\Habit;
+        
+        $habit->setDifficulty('Hard');
+
+        $this->assertEquals($habit->getDifficulty(), 'Hard');
+    }
+    
+    public function testThatWeCanGetHabitScore() 
+    {
+        $habit = new \App\Models\Habit;
+        
+        $habit->setScore(0);
+
+        $this->assertEquals($habit->getScore(), 0);
+    }
 
 }
