@@ -106,7 +106,10 @@ const completeTask = (req, res, next) => {
         return handleResponse(uid, 403);
     }
 
-    return admin.database().ref('tasks/'+uid+'/'+tid+'/complete').set(true).then(() => {
+    return admin.database().ref('tasks/'+uid+'/'+tid).update({
+        completed: true,
+        completedDate: new Date.getTime()
+    }).then(() => {
         res.status(200);
         res.send(tid);
     }).catch(error => {
