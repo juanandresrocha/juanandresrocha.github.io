@@ -1,6 +1,7 @@
 {
     "require": {
-        "phpunit/phpunit": "^6.4"
+        "kreait/firebase-php": "^3.0",
+        "phpunit/phpunit": "6.4.4"
     },
     "autoload": {
         "psr-4": {

@@ -11,4 +11,5 @@ class BadYGBScoreCalculator extends BasicCalculator implements ScoreCalculator
         $pointsToReduce = $this->calculatePoints($difficulty);
         return $score - $pointsToReduce;
     }
+
 }
