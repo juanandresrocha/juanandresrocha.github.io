@@ -112,11 +112,11 @@
 
           $scope.newHabit = function () {
               const url = urlBase + "/habit/" + $scope.uid + "/new";
-              $scope.body = {
+              const body = {
                   name: $scope.name,
                   difficulty: $scope.difficulty
               };
-              $http.post(url, $scope.body).then(function (response) {
+              $http.post(url, body).then(function (response) {
                   console.log(response);
                   $scope.name = '';
                   $scope.difficulty = 'Easy';
@@ -140,6 +140,52 @@
                   $scope.status = response.status;
               });
           };
+
+          $scope.deleteHabit = function (key) {
+              const url = urlBase + "/habit/delete/" + $scope.uid + '/'+key;
+              $http.delete(url).then(function (response) {
+                  $scope.getHabits();
+                  console.log(response);
+              }, function (response) {
+                  console.log(response);
+                  $scope.data = response.data || 'Request failed';
+                  $scope.status = response.status;
+              });
+          };
+
+          $scope.updateHabit = function () {
+              const url = urlBase + "/habit/update/" + $scope.uid + '/'+$scope.habitToEdit;
+              const body = {
+                  userID: $scope.uid,
+                  id: $scope.habitToEdit,
+                  name: $scope.name,
+                  difficulty: $scope.difficulty,
+                  score: $scope.score,
+                  range: $scope.range
+              };
+              $http.post(url, body).then(function (response) {
+                  $scope.getHabits();
+                  console.log(response);
+                  $scope.habitToEdit = '';
+                  $scope.name = '';
+                  $scope.difficulty = '';
+                  $scope.score = '';
+                  $scope.range = '';
+              }, function (response) {
+                  console.log(response);
+                  $scope.data = response.data || 'Request failed';
+                  $scope.status = response.status;
+              });
+          };
+
+          $scope.editHabit = function (key) {
+              $scope.habitToEdit = key;
+              $scope.name = $scope.habits[key].name;
+              $scope.difficulty = $scope.habits[key].difficulty;
+              $scope.score = $scope.habits[key].score;
+              $scope.range = $scope.habits[key].range;
+          };
+
           $scope.getHabits();
       }]);
   </script>
@@ -258,7 +304,7 @@
                   </div>
                   <div class="col-md-2">
                     <div class="btn-group-vertical float-right" role="group">
-                      <button type="button" class="btn btn-link">✗</button>
+                      <button ng-click="deleteHabit(key)" type="button" class="btn btn-link">✗</button>
                       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#habitEdit">✎</button>
                     </div>
                   </div>
