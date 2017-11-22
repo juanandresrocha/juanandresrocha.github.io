@@ -31,19 +31,6 @@ class FBConnection
         $this->database = $firebase->getDatabase();
     }
 
-    public function save($data)
-    {
-        $newHabitKey = $this->database->getReference('habits')->push([
-            'userID' => $data['userID'],
-            'name' => $data['name'],
-            'difficulty' => $data['difficulty'],
-            'score' => $data['score'],
-            'range' => $data['range'],
-        ])->getKey();
-
-        return $newHabitKey;
-    }
-
     public function getDatabase(){
         return $this->database;
     }

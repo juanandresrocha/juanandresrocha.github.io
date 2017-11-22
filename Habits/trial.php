@@ -43,4 +43,16 @@ $snapshot = $reference->getSnapshot();
 //    'range' => $data['range'],
 //])->getKey();
 
+foreach ($habits as $habit)
+{
+    $keys = array_keys($habit);
+    foreach ($keys as $key)
+    {
+        $score = $habit[$key]['score'];
+        if(){
+
+        }
+    }
+}
+
 var_dump($snapshot->getValue());

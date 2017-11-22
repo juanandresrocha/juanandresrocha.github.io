@@ -5,7 +5,6 @@ namespace App\Models;
 use App\BadOrangeScoreCalculator;
 use App\BadRedScoreCalculator;
 use App\BadYGBScoreCalculator;
-use App\FBConnection;
 use App\GoodBlueScoreCalculator;
 use App\GoodGreenScoreCalculator;
 use App\GoodROYScoreCalculator;
@@ -13,7 +12,7 @@ use App\GoodROYScoreCalculator;
 class Habit
 {
 
-    protected $userID, $name, $difficulty, $score, $range, $scoreCalculatorMethod, $FBConnection, $FBTokenKey;
+    protected $userID, $name, $difficulty, $score, $range, $scoreCalculatorMethod;
 
     public function __construct($userID = null, $name = null, $difficulty = null)
     {
@@ -22,9 +21,6 @@ class Habit
         $this->difficulty = $difficulty;
         $this->score = 0;
         $this->range = "Orange";
-
-        $this->FBConnection = new FBConnection();
-        $this->FBTokenKey = $this->save();
     }
 
     public function markHabit($typeOfMark)
@@ -64,31 +60,6 @@ class Habit
             }
         }
 
-    }
-
-    public function save()
-    {
-        return $this->FBConnection->save($this->getSelfData());
-    }
-
-    // Getters & Setters
-
-    public function getFBTokenKey()
-    {
-        return $this->FBTokenKey;
-    }
-
-    public function getSelfData()
-    {
-        $data = array(
-            'userID' => $this->getUserID(),
-            'name' => $this->getName(),
-            'difficulty' => $this->getDifficulty(),
-            'score' => $this->getScore(),
-            'range' => $this->getRange(),
-        );
-
-        return $data;
     }
 
     public function setCalculatorMethod($calculatorMethod)
