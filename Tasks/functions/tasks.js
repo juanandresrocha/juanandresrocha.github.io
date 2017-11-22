@@ -4,9 +4,11 @@ const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const bodyParser = require('body-parser');
 const express = require('express');
-const cors = require('cors')({origin: true});
+const cors = require('cors');
 const app = express();
 const serviceAccount = require("./serviceAccountKey.json");
+
+app.use(cors({origin: true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -108,7 +110,7 @@ const completeTask = (req, res, next) => {
 
     return admin.database().ref('tasks/'+uid+'/'+tid).update({
         completed: true,
-        completedDate: new Date.getTime()
+        completedDate: new Date().getTime()
     }).then(() => {
         res.status(200);
         res.send(tid);
@@ -169,6 +171,58 @@ const delayedTasks = (req, res) => {
     });
 };
 
+const adminTasks = (req, res) => {
+    if (req.method !== 'GET') {
+        return handleResponse(uid, 403);
+    }
+
+    let taskCount = {};
+    taskCount.incompleted = 0;
+    taskCount.completedOnDay = 0;
+    taskCount.completedBeforeDay = 0;
+    taskCount.completedAfeterDay = 0;
+    taskCount.avaiable = 0;
+    taskCount.avaiableToDay = 0;
+
+    const toDay = new Date().getTime();
+    const start = new Date();
+    start.setHours(0,0,0,0);
+
+    const end = new Date();
+    end.setHours(23,59,59,999);
+
+    return admin.database().ref('tasks').once('value').then((tasks) => {
+        tasks.forEach((user) => {
+            user.forEach((task) => {
+                if (task.child('completed').val()) {
+                    if (task.child('dueDate').val() <= task.child('completedDate').val()) {
+                        taskCount.completedBeforeDay++;
+                    } else {
+                        taskCount.completedAfeterDay++;
+                    }
+                } else {
+                    if (task.child('dueDate').val() < toDay) {
+                        taskCount.incompleted++;
+                    } else {
+                        if (task.child('dueDate').val() >= start.getTime() && task.child('dueDate').val() <= end.getTime()) {
+                            taskCount.avaiableToDay++;
+                        } else {
+                            taskCount.avaiable++;
+                        }
+                    }
+                }
+            });
+        });
+    }).then(() => {
+        res.status(200);
+        res.send(taskCount);
+    }).catch(error => {
+        res.status(404).json({ error: error }).end();
+        console.log("Error creating new task:", error);
+    });
+};
+
+app.get('/admin', adminTasks);
 app.use('/new', newTask);
 app.use('/edit', editTask);
 app.use('/delete', deleteTask);
