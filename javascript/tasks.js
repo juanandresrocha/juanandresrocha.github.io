@@ -74,27 +74,27 @@ function postCompleteTask(userID, taskID) {
 
 function getTasksDueToday(userID) {
     $.ajax({
-        'url': 'https://us-central1-architecture-project-2017.cloudfunctions.net/task/dueToday?uid="' + userID + '"',
+        'dataType' : 'json',
+        'url': 'https://us-central1-architecture-project-2017.cloudfunctions.net/task/dueToday?uid=' + userID,
         'type': 'GET',
-        'data': {
+        error: function(returnval) {
+            console.log("Error: " + returnval)
         },
-        'success': function (data) {
-            if (data == "success") {
-                alert('request sent!');
-            }
+        success: function (returnval) {
+            console.log("Success: " + JSON.stringify(returnval))
         }
     });
 }
 function getDelayedTasks(userID) {
     $.ajax({
-        'url': 'https://us-central1-architecture-project-2017.cloudfunctions.net/task/delayed?uid="' + userID + '"',
+        'dataType' : 'json',
+        'url': 'https://us-central1-architecture-project-2017.cloudfunctions.net/task/delayed?uid=' + userID,
         'type': 'GET',
-        'data': {
+        error: function(returnval) {
+            console.log("Error: " + returnval)
         },
-        'success': function (data) {
-            if (data == "success") {
-                alert('request sent!');
-            }
+        success: function (returnval) {
+            console.log("Success: " + JSON.stringify(returnval))
         }
     });
 }
@@ -107,7 +107,7 @@ function getAllTasks(userID) {
             console.log("Error: " + returnval)
         },
         success: function (returnval) {
-            console.log("Success: " + returnval)
+            console.log("Success: " + JSON.stringify(returnval))
         }
     });
 }
