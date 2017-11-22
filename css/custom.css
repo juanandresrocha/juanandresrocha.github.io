@@ -65,6 +65,10 @@ padding-right: 10px;
 .habitinfo{
   margin-left: 5px;
 }
+.habitdiff{
+  margin-left: 7px;
+  font-size: 10px;
+}
 
 .task{
   margin-bottom: 5px;
@@ -79,7 +83,26 @@ padding-right: 10px;
   font-size: 10px;
   margin-left: 7px;
 }
-.timing{
+.ontime{
   font-size: 9px;
   color: gray;
+}
+.delayed{
+  font-size: 9px;
+  color: red;
+}
+.habit.Orange{
+  background-color: orange;
+}
+.habit.Red{
+  background-color: red;
+}
+.habit.Yellow{
+  background-color: yellow;
+}
+.habit.Green{
+  background-color: green;
+}
+.habit.Blue{
+  background-color: blue;
 }
