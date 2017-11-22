@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Habits</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <script src="js/angular.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/angular-cookies.js"></script>
+    <script>
+        var habits = angular.module('habits', ['ngCookies']);
+
+        habits.controller('TaskController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+            $scope.uid = 'OfyKF3SaUrSHs9efFFn4VtI48Qx2';
+            $scope.dueDate = new Date();
+            const urlBase = 'https://us-central1-architecture-project-2017.cloudfunctions.net/task/';
+            const url = urlBase + "all/?uid=" + $scope.uid;
+
+            $scope.getTasks = function () {
+                $http.get(url).then(function (response) {
+                    $scope.tasks = angular.fromJson(angular.toJson(response.data));
+                }, function (response) {
+                    console.log(response);
+                    $scope.data = response.data || 'Request failed';
+                    $scope.status = response.status;
+                });
+            };
+            $scope.getTasks();
+
+            $scope.newTask = function () {
+                const url = urlBase + "new?uid=" + $scope.uid + "&title=" + $scope.title + "&descripcion=" + $scope.description + "&dueDate=" + $scope.dueDate.getTime() + "&reminder=" + $scope.reminder;
+                $http.post(url).then(function (response) {
+                    console.log(response);
+                    $scope.title = '';
+                    $scope.description = '';
+                    $scope.dueDate = '';
+                    $scope.reminder = '';
+                    $('#taskCreate').modal('hide');
+                    $scope.getTasks();
+                    //$scope.uid = $cookies.get('uid');
+                }, function (response) {
+                    console.log(response);
+                    $scope.data = response.data || 'Request failed';
+                    $scope.status = response.status;
+                });
+            };
+
+        }]);
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+  </head>
+  <body ng-app="habits">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!-- Main menu -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" style="font-family: 'Barlow', sans-serif;">
+      <a class="navbar-brand" href="#"><img src = "img/logotext.png" height = "50px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Stats</a>
+          </li>
+        </ul>
+        <!--Right navbar-->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button type="button" class="btn btn-round btn-outline-dark" data-toggle="modal" data-target="#logout">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Container for everything else -->
+    <div class="">
+      <!-- Stats -->
+      <div class="row statsbar">
+        <div class="col">
+          <div class="stats">
+            <h1>N/A</h1>
+            <span>Score</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="stats">
+            <h1>N/A</h1>
+            <span>Completed Tasks</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="stats">
+            <h1>N/A</h1>
+            <span>Pending Tasks</span>
+          </div>
+        </div>
+      </div>
+      <!-- Main interface -->
+      <div id="maininterface" class="row">
+        <!-- Habits -->
+        <div class="col">
+          <div class="row">
+            <div class="col-auto mr-auto"> <h4>Habits report</h4> </div>
+          </div>
+          <div class="card section" style="margin-top: 5px; overflow-y: scroll;">
+              <div class="card-header">
+                  <ul class="nav nav-tabs card-header-tabs">
+                      <li class="nav-item">
+                          <a class="nav-link active" data-toggle="tab" href="#red">Red Range</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#orange">Orange Range</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#yellow">Yellow Range</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#green">Green Range</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#blue">Blue Range</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#worst">Worst</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#best">Best</a>
+                      </li>
+                  </ul>
+              </div>
+            <div class="card-body">
+              <!-- Habits go here -->
+              <ul class="list-unstyled">
+                <li><div class="card habit">
+                    <section class="row">
+                      <div class="col-md-8">
+                        <span class="habitinfo label">Habit text</span>
+                      </div>
+                      <div class="col-md-2">
+                        <span class="label">0</span>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="btn-group-vertical float-right" role="group">
+                        <button type="button" class="btn btn-danger disabled">-</button>
+                        <button type="button" class="btn btn-success disabled">+</button>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Tasks -->
+        <div class="col" ng-controller="TaskController">
+          <div class="row">
+            <div class="col-auto mr-auto"> <h4>Tasks report</h4> </div>
+          </div>
+          <div class="card section" style="margin-top: 5px; overflow-y: scroll;">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#onTime">On time</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#beforeTime">Before time</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#late">Late</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#delayed">Delayed</a>
+                </li>
+                  <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#dueToday">Due today</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#remaining">Remaining</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="card-body" id="onTime">
+              <!-- Tasks go here -->
+              <ul class="list-unstyled">
+
+                <li ng-repeat="task in tasks"><div class="card task">
+                    <section class="row">
+                      <div class="col-md-2">
+                        <button type="button" class="btn btn-success disabled" style = "height: 100%;">✔</button>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="row"><span class="taskinfo">{{task.title}}</span></div>
+                        <div class="row"><span class="taskdescription">{{task.descripcion}}</span></div>
+
+                      </div>
+                      <div class="col-md-2" style="text-align: center;">
+                        <span class="timing">On time</span>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
