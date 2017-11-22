@@ -14,7 +14,7 @@ class Habit
 
     protected $userID, $name, $difficulty, $score, $range, $scoreCalculatorMethod;
 
-    public function __construct($userID = null, $name = null, $difficulty = null)
+    public function __construct($userID, $name, $difficulty)
     {
         $this->userID = $userID;
         $this->name = $name;

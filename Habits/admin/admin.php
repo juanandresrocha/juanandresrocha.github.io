@@ -48,7 +48,7 @@ function getRangeResults($habits){
 
 }
 
-function getHabitWithLowestScore($habits)
+function getTopHabit($habits, $type)
 {
     $habitArray = reset($habits);
     $firstHabit = reset($habitArray);
@@ -57,44 +57,25 @@ function getHabitWithLowestScore($habits)
     $worstScoreUserID = key($habits);
     $worstScoreHabitID = key($habitArray);
 
-    foreach ($habits as $userID => $habit)
+    $operation = function ($param1, $param2)
     {
-        $keys = array_keys($habit);
-        foreach ($keys as $key)
+        return $param1 < $param2;
+    };
+    if($type == 'highest'){
+        $operation = function ($param1, $param2)
         {
-            $currentScore = $habit[$key]['score'];
-            if($currentScore < $worstScore){
-                $worstScoreUserID = $userID;
-                $worstScoreHabitID = $key;
-                $worstScore = $currentScore;
-            }
-        }
+            return $param1 > $param2;
+        };
     }
 
-    $result = array(
-        "userID" => $worstScoreUserID,
-        "id" => $worstScoreHabitID,
-    );
-
-    return $result;
-}
-
-function getHabitWithHighestScore($habits)
-{
-    $habitArray = reset($habits);
-    $firstHabit = reset($habitArray);
-    $worstScore = $firstHabit['score'];
-
-    $worstScoreUserID = key($habits);
-    $worstScoreHabitID = key($habitArray);
-
     foreach ($habits as $userID => $habit)
     {
         $keys = array_keys($habit);
         foreach ($keys as $key)
         {
             $currentScore = $habit[$key]['score'];
-            if($currentScore > $worstScore){
+
+            if($operation($currentScore, $worstScore)){
                 $worstScoreUserID = $userID;
                 $worstScoreHabitID = $key;
                 $worstScore = $currentScore;

@@ -66,8 +66,6 @@ $app->post('/habit/update/{userID}/{id}', function(Request $request, Response $r
     $reference->update([
         'name' => $newValues['name'] ?? $data['name'],
         'difficulty' => $newValues['difficulty'] ?? $data['difficulty'],
-        'score' => $newValues['score'] ?? $data['score'],
-        'range' => $newValues['range'] ?? $data['range'],
     ]);
 
     return $response->withStatus(200)->write('Habit updated successfully');
@@ -97,7 +95,7 @@ $app->get('/admin/habits/perRange', function(Request $request, Response $respons
 
     $results = getRangeResults($habits);
 
-    return $response->withStatus(200)->write(print_r($results));
+    return $response->withStatus(200)->write(json_encode($results));
 
 });
 
@@ -109,7 +107,7 @@ $app->get('/admin/habits/getWorst', function(Request $request, Response $respons
 
     $habits = $reference->getSnapshot()->getValue();
 
-    $result = getHabitWithLowestScore($habits);
+    $result = getTopHabit($habits, 'lowest');
 
     $FBConnection = new \App\FBConnection();
 
@@ -128,7 +126,7 @@ $app->get('/admin/habits/getHighest', function(Request $request, Response $respo
 
     $habits = $reference->getSnapshot()->getValue();
 
-    $result = getHabitWithHighestScore($habits);
+    $result = getTopHabit($habits, 'highest');
 
     $FBConnection = new \App\FBConnection();
 
@@ -137,4 +135,56 @@ $app->get('/admin/habits/getHighest', function(Request $request, Response $respo
     $snapshot = $reference->getSnapshot()->getValue();
 
     return $response->withStatus(200)->write(json_encode($snapshot));
+});
+
+// Logic requests
+
+$app->post('/habit/markAsGood/{userID}/{id}', function(Request $request, Response $response, $args){
+
+    $FBConnection = new \App\FBConnection();
+
+    $reference = $FBConnection->getDatabase()->getReference('habits/' . $args['userID'] . '/' . $args['id'] );
+
+    $habitValues = $reference->getSnapshot()->getValue();
+
+    $habit = new \App\Models\Habit($args['userID'], $habitValues['name'], $habitValues['difficulty']);
+
+    $habit->setScore($habitValues['score']);
+
+    $habit->markHabit("Good");
+
+    $reference->update([
+        'name' => $habitValues['name'],
+        'difficulty' => $habitValues['difficulty'],
+        'score' => $habit->getScore(),
+        'range' =>$habit->getRange(),
+    ]);
+
+    return $response->withStatus(200)->write('Habit marked as good successfully!');
+
+});
+
+$app->post('/habit/markAsBad/{userID}/{id}', function(Request $request, Response $response, $args){
+
+    $FBConnection = new \App\FBConnection();
+
+    $reference = $FBConnection->getDatabase()->getReference('habits/' . $args['userID'] . '/' . $args['id'] );
+
+    $habitValues = $reference->getSnapshot()->getValue();
+
+    $habit = new \App\Models\Habit($args['userID'], $habitValues['name'], $habitValues['difficulty']);
+
+    $habit->setScore($habitValues['score']);
+
+    $habit->markHabit("Bad");
+
+    $reference->update([
+        'name' => $habitValues['name'],
+        'difficulty' => $habitValues['difficulty'],
+        'score' => $habit->getScore(),
+        'range' =>$habit->getRange(),
+    ]);
+
+    return $response->withStatus(200)->write('Habit marked as bad successfully!');
+
 });

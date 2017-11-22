@@ -6,7 +6,7 @@ class HabitTest extends TestCase
 {
     public function testThatWeCanGetUserID() 
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
         
         $habit->setUserID('MikeID');
 
@@ -15,7 +15,7 @@ class HabitTest extends TestCase
     
     public function testThatWeCanGetHabitName() 
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
         
         $habit->setName('Study Architecture');
 
@@ -24,7 +24,7 @@ class HabitTest extends TestCase
     
     public function testThatWeCanGetHabitDifficulty()
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
         
         $habit->setDifficulty('Hard');
 
@@ -33,7 +33,7 @@ class HabitTest extends TestCase
     
     public function testThatWeCanGetHabitScore() 
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
         
         $habit->setScore(9);
 
@@ -44,7 +44,7 @@ class HabitTest extends TestCase
     
     public function testThatWeCanGetHabitRedRange() 
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
 
         $habit->setScore(-1);
 
@@ -54,7 +54,7 @@ class HabitTest extends TestCase
     
     public function testThatWeCanGetHabitOrangeRange() 
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
 
         $habit->setScore(0);
 
@@ -64,7 +64,7 @@ class HabitTest extends TestCase
     
     public function testThatWeCanGetHabitYellowRange() 
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
 
         $habit->setScore(40);
 
@@ -74,7 +74,7 @@ class HabitTest extends TestCase
 
     public function testThatWeCanGetHabitGreenRange()
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
 
         $habit->setScore(49);
 
@@ -84,7 +84,7 @@ class HabitTest extends TestCase
     
     public function testThatWeCanGetHabitBlueRange() 
     {
-        $habit = new \App\Models\Habit;
+        $habit = new \App\Models\Habit('JuanID', 'Go to the gym', 'Medium');
 
         $habit->setScore(55);
 
