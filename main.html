@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Habits</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!-- Main menu -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" style="font-family: 'Barlow', sans-serif;">
+      <a class="navbar-brand" href="#"><img src = "img/logotext.png" height = "50px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Stats</a>
+          </li>
+        </ul>
+        <!--Right navbar-->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button type="button" class="btn btn-round btn-outline-dark" data-toggle="modal" data-target="#login">Account</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Container for everything else -->
+    <div class="">
+      <!-- Stats -->
+      <div class="row statsbar">
+        <div class="col stats">
+          <h1>N/A</h1>
+          <span>Score</span>
+        </div>
+        <div class="col stats">
+          <h1>N/A</h1>
+          <span>Completed Tasks</span>
+        </div>
+        <div class="col stats">
+          <h1>N/A</h1>
+          <span>Pending Tasks</span>
+        </div>
+      </div>
+      <!-- Main interface -->
+      <div id="maininterface" class="row">
+        <!-- Habits -->
+        <div class="col">
+          <div class="row">
+            <div class="col-auto mr-auto"> <h4>Habits</h4> </div>
+            <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark"> + </button></div>
+          </div>
+          <div class="card" style="margin-top: 5px;">
+            <div class="card-body">
+              <!-- Habits go here -->
+              <ul class="list-unstyled">
+                <li class="habit"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-danger">-</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
+                  <button type="button" class="btn btn-success">+</button>
+                </div></li>
+                <li class="habit"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-danger">-</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
+                  <button type="button" class="btn btn-success">+</button>
+                </div></li>
+                <li class="habit"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-danger">-</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
+                  <button type="button" class="btn btn-success">+</button>
+                </div></li>
+                <li class="habit"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-danger">-</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
+                  <button type="button" class="btn btn-success">+</button>
+                </div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Tasks -->
+        <div class="col">
+          <div class="row">
+            <div class="col-auto mr-auto"> <h4>Tasks</h4> </div>
+            <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark"> + </button></div>
+          </div>
+          <div class="card" style="margin-top: 5px;">
+            <div class="card-body">
+              <!-- Tasks go here -->
+              <ul class="list-unstyled">
+                <li class="task"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-success">✔</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
+                </div></li>
+                <li class="task"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-success">✔</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
+                </div></li>
+                <li class="task"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-success">✔</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
+                </div></li>
+                <li class="task"><div class="btn-group btn-group-justified" role="group">
+                  <button type="button" class="btn btn-success">✔</button>
+                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
+                </div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Filters and search -->
+        <div class="col">
+          <h4>Filters</h4>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

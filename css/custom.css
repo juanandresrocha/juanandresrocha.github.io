@@ -1,0 +1,57 @@
+body{
+  background-color: #f2f2f2;
+}
+.btn-round-lg{
+border-radius: 22.5px;
+}
+.btn-round{
+border-radius: 30px;
+}
+.btn-round-sm{
+border-radius: 15px;
+}
+.btn-round-xs{
+border-radius: 11px;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.carousel-caption{
+  top:30%;
+  bottom: auto;
+}
+
+.statsbar{
+  background-color: black;
+  height: 20vh;
+  margin-top: 5%;
+  font-family: 'Barlow', sans-serif;
+  color: white;
+  text-align: center;
+}
+.stats{
+
+}
+
+#maininterface{
+  height: 100vh;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: 'Barlow', sans-serif;
+}
+
+.card{
+  background-color: #d9d9d9;
+  text-align: center;
+}
+
+.habit{
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.task{
+  width: 100%;
+  margin-bottom: 5px;
+}
