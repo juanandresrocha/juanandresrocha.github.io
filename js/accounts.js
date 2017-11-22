@@ -23,3 +23,26 @@ function postNewAccount(email, password, name, birthday) {
         }
     });
 }
+
+function postLoginUser(email, password) {
+    console.log("Posting new account...");
+    console.log("Email: " + email + "\n Password: " + password);
+    $.ajax({
+        'url': 'http://10.43.45.86:8080/userms/LoginUser',
+        'type': 'POST',
+        'data': {
+            'email': email,
+            'password': password
+        },
+        'success': function (data) {
+            console.log("Success");
+            console.log(data);
+            $.cookie("uid", data);
+
+        },
+        'error': function (data) {
+            console.log("Error");
+            console.log(data);
+        }
+    });
+}
