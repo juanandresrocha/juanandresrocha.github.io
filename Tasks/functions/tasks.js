@@ -35,7 +35,7 @@ const handleResponse = (email, status, body) => {
 const newTask = (req, res, next) => {
     const uid = req.query.uid;
     const title = req.query.title;
-    const description = req.query.description;
+    const descripcion = req.query.descripcion;
     const dueDate = req.query.dueDate;
     const reminder = req.query.reminder;
 
@@ -45,7 +45,7 @@ const newTask = (req, res, next) => {
 
     return admin.database().ref('tasks/'+uid).push({
         title: title,
-        desciption: description,
+        descripcion: descripcion,
         dueDate: dueDate,
         reminder: reminder
     }).then((key) => {
@@ -57,11 +57,11 @@ const newTask = (req, res, next) => {
     });
 };
 
-const editTask = (req, res, next) => {
+const editTask = (req, res) => {
     const uid = req.query.uid;
     const tid = req.query.tid;
     const title = req.query.title;
-    const description = req.query.description;
+    const descripcion = req.query.descripcion;
     const dueDate = req.query.dueDate;
     const reminder = req.query.reminder;
 
@@ -71,7 +71,7 @@ const editTask = (req, res, next) => {
 
     return admin.database().ref('tasks/'+uid+'/'+tid).set({
         title: title,
-        desciption: description,
+        descripcion: descripcion,
         dueDate: dueDate,
         reminder: reminder
     }).then(() => {
