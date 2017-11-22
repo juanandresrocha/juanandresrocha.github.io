@@ -7,11 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700" rel="stylesheet">
     <!-- Bootstrap CSS -->
+    <script src="js/angular.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/angular-cookies.js"></script>
+    <script>
+        var habits = angular.module('habits', ['ngCookies']);
+
+        habits.controller('TaskController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+            $scope.uid = 'OfyKF3SaUrSHs9efFFn4VtI48Qx2';
+            const urlBase = 'https://us-central1-architecture-project-2017.cloudfunctions.net/task/';
+            const url = urlBase + "all/?uid=" + $scope.uid;
+            $http.get(url).then(function (response) {
+                $scope.tasks = angular.fromJson(angular.toJson(response.data));
+            }, function (response) {
+                console.log(response);
+                $scope.data = response.data || 'Request failed';
+                $scope.status = response.status;
+            });
+
+            $scope.newTask = function () {
+                const url = urlBase + "new?uid=" + $scope.uid + "&title=" + $scope.title + "&descripcion=" + $scope.description + "&dueDate=" + $scope.dueDate+ "&reminder=" + $scope.reminder;
+                $http.post(url).then(function (response) {
+                    console.log(response);
+                    $scope.title = '';
+                    $scope.description = '';
+                    $scope.dueDate = '';
+                    $scope.reminder = '';
+                    //$scope.uid = $cookies.get('uid');
+                }, function (response) {
+                    console.log(response);
+                    $scope.data = response.data || 'Request failed';
+                    $scope.status = response.status;
+                });
+            };
+
+        }]);
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
   </head>
-  <body>
+  <body ng-app="habits">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -103,7 +139,46 @@
           </div>
         </div>
         <!-- Tasks -->
-        <div class="col">
+        <div class="col" ng-controller="TaskController">
+          <!-- Create Task -->
+          <div class="modal" tabindex="-1" role="dialog" id="taskCreate">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Create Task</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="title">Task's name:</label>
+                      <input type="text" class="form-control" id="title" placeholder="Example: Buy some ice cream" ng-model="title">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Task's description:</label>
+                      <input type="text" class="form-control" id="description" placeholder="Describe your task" ng-model="description">
+                    </div>
+                    <div class="form-group">
+                      <label for="date">Due date:</label>
+                      <input type="date" class="form-control" id="date" ng-model="dueDate">
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" ng-model="reminder">
+                        Remind me
+                      </label>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" ng-click="newTask()">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-auto mr-auto"> <h4>Tasks</h4> </div>
             <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark" data-toggle="modal" data-target="#taskCreate"> + </button></div>
@@ -113,13 +188,13 @@
               <!-- Tasks go here -->
               <ul class="list-unstyled">
 
-                <li><div class="card task">
+                <li ng-repeat="task in tasks"><div class="card task">
                     <section class="row">
                       <div class="col-md-2">
                         <button type="button" class="btn btn-success">✔</button>
                       </div>
                       <div class="col-md-8">
-                        <span class="taskinfo">Task text</span>
+                        <span class="taskinfo">{{task.title}}</span>
                       </div>
                       <div class="col-md-2" style="text-align: center;">
                         <span class="timing">On time</span>
@@ -167,45 +242,6 @@
                   <option>Medium</option>
                   <option>Hard</option>
                 </select>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Create Task -->
-    <div class="modal" tabindex="-1" role="dialog" id="taskCreate">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Create Task</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Task's name:</label>
-                <input type="email" class="form-control" id="task" placeholder="Example: Buy some ice cream">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Task's description:</label>
-                <input type="email" class="form-control" id="task" placeholder="Describe your task">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Due date:</label>
-                <input type="email" class="form-control" id="date" placeholder="dd/mm/yyyy">
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input">
-                  Remind me
-                </label>
               </div>
             </form>
           </div>
