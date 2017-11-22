@@ -29,7 +29,29 @@
                 const urlBase = 'http://67.205.133.19';
                 const url = urlBase + "/admin/habits/perRange";
                 $http.get(url).then(function (response) {
-                    $scope.tasks = angular.fromJson(angular.toJson(response.data));
+                    $scope.habits = angular.fromJson(angular.toJson(response.data));
+                }, function (response) {
+                    console.log(response);
+                    $scope.data = response.data || 'Request failed';
+                    $scope.status = response.status;
+                });
+            };
+            $scope.getBetsHabit = function () {
+                const urlBase = 'http://67.205.133.19';
+                const url = urlBase + "/admin/habits/getHighest";
+                $http.get(url).then(function (response) {
+                    $scope.best = angular.fromJson(angular.toJson(response.data));
+                }, function (response) {
+                    console.log(response);
+                    $scope.data = response.data || 'Request failed';
+                    $scope.status = response.status;
+                });
+            };
+            $scope.getWorstHabit = function () {
+                const urlBase = 'http://67.205.133.19';
+                const url = urlBase + "/admin/habits/getWorst";
+                $http.get(url).then(function (response) {
+                    $scope.worst = angular.fromJson(angular.toJson(response.data));
                 }, function (response) {
                     console.log(response);
                     $scope.data = response.data || 'Request failed';
@@ -38,6 +60,8 @@
             };
             $scope.getTasks();
             $scope.getHabits();
+            $scope.getWorstHabit();
+            $scope.getBetsHabit();
         }]);
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -73,7 +97,7 @@
       <div class="row adminrows firstrow">
         <div class="col">
           <div class="stats">
-            <h1>{{tasks.completed}}</h1>
+            <h1>{{tasks.completedAfeterDay+tasks.completedBeforeDay+tasks.completedOnDay}}</h1>
             <span>Completed Tasks</span>
           </div>
         </div>
@@ -93,7 +117,7 @@
       <div class="row adminrows">
         <div class="col">
           <div class="stats">
-            <h1>{{tasks.completedAfterDay}}</h1>
+            <h1>{{tasks.completedAfeterDay}}</h1>
             <span>Completed Tasks - After due date</span>
           </div>
         </div>
@@ -119,13 +143,13 @@
         </div>
         <div class="col">
           <div class="stats">
-            <h1>N/A</h1>
+            <h1>{{habits.Reds}}</h1>
             <span>Red Range Habits</span>
           </div>
         </div>
         <div class="col">
           <div class="stats">
-            <h1>N/A</h1>
+            <h1>{{habits.Oranges}}</h1>
             <span>Orange Range Habits</span>
           </div>
         </div>
@@ -133,19 +157,19 @@
       <div class="row adminrows">
         <div class="col">
           <div class="stats">
-            <h1>N/A</h1>
+            <h1>{{habits.Yellows}}</h1>
             <span>Yellow Range Habits</span>
           </div>
         </div>
         <div class="col">
           <div class="stats">
-            <h1>N/A</h1>
+            <h1>{{habits.Greens}}</h1>
             <span>Green Range Habits</span>
           </div>
         </div>
         <div class="col">
           <div class="stats">
-            <h1>N/A</h1>
+            <h1>{{habits.Blues}}</h1>
             <span>Blue Range</span>
           </div>
         </div>
@@ -153,13 +177,19 @@
       <div class="row adminrows">
         <div class="col">
           <div class="stats">
-            <h1>N/A</h1>
+            <p>{{best.name}}</p>
+            <h5>{{best.difficulty}}</h5>
+            <h5>{{best.range}}</h5>
+            <h5>{{best.score}}</h5>
             <span>Best Habit</span>
           </div>
         </div>
         <div class="col">
           <div class="stats">
-            <h1>N/A</h1>
+            <p>{{worst.name}}</p>
+            <h5>{{worst.difficulty}}</h5>
+            <h5>{{worst.range}}</h5>
+            <h5>{{worst.score}}</h5>
             <span>Worst Habit</span>
           </div>
         </div>
