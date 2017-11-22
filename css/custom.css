@@ -92,17 +92,62 @@ padding-right: 10px;
   color: red;
 }
 .habit.Orange{
-  background-color: orange;
+  background-color: #e68a00;
 }
 .habit.Red{
-  background-color: red;
+  background-color: #e62e00;
 }
 .habit.Yellow{
-  background-color: yellow;
+  background-color: #e6e600;
 }
 .habit.Green{
-  background-color: green;
+  background-color: #009933;
 }
 .habit.Blue{
-  background-color: blue;
+  background-color: #008ae6;
+}
+.nav-tabs .nav-link.active{
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
+.nav-tabs .nav-link.active:hover{
+  background-color: gray;
+  color: white;
+  border-color: gray;
+}
+
+.nav-tabs .nav-link:hover{
+  background-color: gray;
+  color: white;
+  border-color: gray;
+}
+
+.upbtn{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bottombtn{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.editbtn{
+  border-bottom-left-radius: 0;
+}
+.removebtn{
+  border-top-left-radius: 0;
+}
+
+.firstrow{
+  margin-top: 5%;
+}
+.adminrows{
+  background-color: black;
+  height: 25vh;
+  font-family: 'Barlow', sans-serif;
+  color: white;
+  text-align: center;
 }
