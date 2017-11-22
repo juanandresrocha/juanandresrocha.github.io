@@ -84,7 +84,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <!-- Register/Login Screen -->
+    <!-- Login Screen -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: 'Barlow', sans-serif;">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -114,10 +114,53 @@
                   Remember me
                 </label>
               </div>
+              <div class="form-group">
+                <span>Don't have an account?</span> <a href="" data-toggle="modal" data-target="#register" >Register</a>
+              </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary btn-dark btn-round" style="display: block; margin: auto;">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Register Screen -->
+    <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: 'Barlow', sans-serif;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="img/habits.png" width="40%" style="display: block; margin: auto;">
+            <p></p>
+            <h4>Register</h4>
+            <p></p>
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name:</label>
+                <input type="email" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter full name">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Birthday:</label>
+                <input type="email" class="form-control" id="name" aria-describedby="emailHelp" placeholder="dd/mm/aaaa">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-dark btn-round" style="display: block; margin: auto;">Register</button>
           </div>
         </div>
       </div>

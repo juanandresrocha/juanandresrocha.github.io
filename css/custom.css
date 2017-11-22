@@ -29,8 +29,17 @@ padding-right: 10px;
   color: white;
   text-align: center;
 }
-.stats{
 
+.stats{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.label{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 #maininterface{
@@ -41,17 +50,33 @@ padding-right: 10px;
   font-family: 'Barlow', sans-serif;
 }
 
-.card{
+.section{
   background-color: #d9d9d9;
   text-align: center;
+  height: 50%;
 }
 
 .habit{
-  width: 100%;
   margin-bottom: 5px;
+  background-color:  #cccccc;
+  text-align: left;
+}
+
+.habitinfo{
+  margin-left: 5px;
 }
 
 .task{
-  width: 100%;
   margin-bottom: 5px;
+  background-color:  #cccccc;
+  text-align: left;
+}
+
+.taskinfo {
+  margin-left: 5px;
+}
+
+.timing{
+  font-size: 9px;
+  color: gray;
 }

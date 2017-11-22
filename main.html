@@ -44,17 +44,23 @@
     <div class="">
       <!-- Stats -->
       <div class="row statsbar">
-        <div class="col stats">
-          <h1>N/A</h1>
-          <span>Score</span>
+        <div class="col">
+          <div class="stats">
+            <h1>N/A</h1>
+            <span>Score</span>
+          </div>
         </div>
-        <div class="col stats">
-          <h1>N/A</h1>
-          <span>Completed Tasks</span>
+        <div class="col">
+          <div class="stats">
+            <h1>N/A</h1>
+            <span>Completed Tasks</span>
+          </div>
         </div>
-        <div class="col stats">
-          <h1>N/A</h1>
-          <span>Pending Tasks</span>
+        <div class="col">
+          <div class="stats">
+            <h1>N/A</h1>
+            <span>Pending Tasks</span>
+          </div>
         </div>
       </div>
       <!-- Main interface -->
@@ -63,32 +69,35 @@
         <div class="col">
           <div class="row">
             <div class="col-auto mr-auto"> <h4>Habits</h4> </div>
-            <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark"> + </button></div>
+            <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark" data-toggle="modal" data-target="#habitCreate"> + </button></div>
           </div>
-          <div class="card" style="margin-top: 5px;">
+          <div class="card section" style="margin-top: 5px; overflow-y: scroll;">
             <div class="card-body">
               <!-- Habits go here -->
               <ul class="list-unstyled">
-                <li class="habit"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-danger">-</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
-                  <button type="button" class="btn btn-success">+</button>
-                </div></li>
-                <li class="habit"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-danger">-</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
-                  <button type="button" class="btn btn-success">+</button>
-                </div></li>
-                <li class="habit"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-danger">-</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
-                  <button type="button" class="btn btn-success">+</button>
-                </div></li>
-                <li class="habit"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-danger">-</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Habit</button>
-                  <button type="button" class="btn btn-success">+</button>
-                </div></li>
+                <li><div class="card habit">
+                    <section class="row">
+                      <div class="col-md-6">
+                        <span class="habitinfo label">Habit text</span>
+                      </div>
+                      <div class="col-md-2">
+                        <span class="label">0</span>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="btn-group-vertical float-right" role="group">
+                        <button type="button" class="btn btn-link">✗</button>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#habitEdit">✎</button>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="btn-group-vertical float-right" role="group">
+                        <button type="button" class="btn btn-danger">-</button>
+                        <button type="button" class="btn btn-success">+</button>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -99,26 +108,26 @@
             <div class="col-auto mr-auto"> <h4>Tasks</h4> </div>
             <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark"> + </button></div>
           </div>
-          <div class="card" style="margin-top: 5px;">
+          <div class="card section" style="margin-top: 5px; overflow-y: scroll;">
             <div class="card-body">
               <!-- Tasks go here -->
               <ul class="list-unstyled">
-                <li class="task"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-success">✔</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
-                </div></li>
-                <li class="task"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-success">✔</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
-                </div></li>
-                <li class="task"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-success">✔</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
-                </div></li>
-                <li class="task"><div class="btn-group btn-group-justified" role="group">
-                  <button type="button" class="btn btn-success">✔</button>
-                  <button type="button" class="btn btn-secondary disabled" style="width: 80%;">Task</button>
-                </div></li>
+
+                <li><div class="card task">
+                    <section class="row">
+                      <div class="col-md-2">
+                        <button type="button" class="btn btn-success">✔</button>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="taskinfo">Task text</span>
+                      </div>
+                      <div class="col-md-2" style="text-align: center;">
+                        <span class="timing">On time</span>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+
               </ul>
             </div>
           </div>
@@ -126,6 +135,111 @@
         <!-- Filters and search -->
         <div class="col">
           <h4>Filters</h4>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button">Search</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create Habit -->
+    <div class="modal" tabindex="-1" role="dialog" id="habitCreate">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Habit</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Habit's name:</label>
+                <input type="email" class="form-control" id="habit" placeholder="Example: Do more clean code.">
+              </div>
+              <div class="form-group">
+                <label for="difficulty">Difficulty:</label>
+                <select class="form-control" id="select">
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create Task -->
+    <div class="modal" tabindex="-1" role="dialog" id="taskCreate">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Task's name:</label>
+                <input type="email" class="form-control" id="habit" placeholder="Example: Do more clean code.">
+              </div>
+              <div class="form-group">
+                <label for="difficulty">Difficulty:</label>
+                <select class="form-control" id="select">
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Edit Habit -->
+    <div class="modal" tabindex="-1" role="dialog" id="habitEdit">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Habit</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Habit's name:</label>
+                <input type="email" class="form-control" id="habit" placeholder="Example: Do more clean code.">
+              </div>
+              <div class="form-group">
+                <label for="difficulty">Difficulty:</label>
+                <select class="form-control" id="select">
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
