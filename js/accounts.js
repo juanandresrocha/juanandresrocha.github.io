@@ -15,7 +15,6 @@ function postNewAccount(email, password, name, birthday) {
         'success': function (data) {
             console.log("Success");
             $.cookie("uid", data);
-
         },
         'error': function (data) {
             console.log("Error");
