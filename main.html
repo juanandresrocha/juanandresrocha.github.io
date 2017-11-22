@@ -15,24 +15,31 @@
 
         habits.controller('TaskController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
             $scope.uid = 'OfyKF3SaUrSHs9efFFn4VtI48Qx2';
+            $scope.dueDate = new Date();
             const urlBase = 'https://us-central1-architecture-project-2017.cloudfunctions.net/task/';
             const url = urlBase + "all/?uid=" + $scope.uid;
-            $http.get(url).then(function (response) {
-                $scope.tasks = angular.fromJson(angular.toJson(response.data));
-            }, function (response) {
-                console.log(response);
-                $scope.data = response.data || 'Request failed';
-                $scope.status = response.status;
-            });
+
+            $scope.getTasks = function () {
+                $http.get(url).then(function (response) {
+                    $scope.tasks = angular.fromJson(angular.toJson(response.data));
+                }, function (response) {
+                    console.log(response);
+                    $scope.data = response.data || 'Request failed';
+                    $scope.status = response.status;
+                });
+            };
+            $scope.getTasks();
 
             $scope.newTask = function () {
-                const url = urlBase + "new?uid=" + $scope.uid + "&title=" + $scope.title + "&descripcion=" + $scope.description + "&dueDate=" + $scope.dueDate+ "&reminder=" + $scope.reminder;
+                const url = urlBase + "new?uid=" + $scope.uid + "&title=" + $scope.title + "&descripcion=" + $scope.description + "&dueDate=" + $scope.dueDate.getTime() + "&reminder=" + $scope.reminder;
                 $http.post(url).then(function (response) {
                     console.log(response);
                     $scope.title = '';
                     $scope.description = '';
                     $scope.dueDate = '';
                     $scope.reminder = '';
+                    $('#taskCreate').modal('hide');
+                    $scope.getTasks();
                     //$scope.uid = $cookies.get('uid');
                 }, function (response) {
                     console.log(response);
@@ -191,10 +198,12 @@
                 <li ng-repeat="task in tasks"><div class="card task">
                     <section class="row">
                       <div class="col-md-2">
-                        <button type="button" class="btn btn-success">✔</button>
+                        <button type="button" class="btn btn-success" style = "height: 100%;">✔</button>
                       </div>
                       <div class="col-md-8">
-                        <span class="taskinfo">{{task.title}}</span>
+                        <div class="row"><span class="taskinfo">{{task.title}}</span></div>
+                        <div class="row"><span class="taskdescription">{{task.descripcion}}</span></div>
+
                       </div>
                       <div class="col-md-2" style="text-align: center;">
                         <span class="timing">On time</span>

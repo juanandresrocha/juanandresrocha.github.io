@@ -75,7 +75,10 @@ padding-right: 10px;
 .taskinfo {
   margin-left: 5px;
 }
-
+.taskdescription{
+  font-size: 10px;
+  margin-left: 7px;
+}
 .timing{
   font-size: 9px;
   color: gray;
