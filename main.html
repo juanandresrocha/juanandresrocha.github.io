@@ -106,7 +106,7 @@
         <div class="col">
           <div class="row">
             <div class="col-auto mr-auto"> <h4>Tasks</h4> </div>
-            <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark"> + </button></div>
+            <div class="col-auto"><button type="button" class="btn btn-round btn-outline-dark" data-toggle="modal" data-target="#taskCreate"> + </button></div>
           </div>
           <div class="card section" style="margin-top: 5px; overflow-y: scroll;">
             <div class="card-body">
@@ -191,15 +191,21 @@
             <form>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Task's name:</label>
-                <input type="email" class="form-control" id="habit" placeholder="Example: Do more clean code.">
+                <input type="email" class="form-control" id="task" placeholder="Example: Buy some ice cream">
               </div>
               <div class="form-group">
-                <label for="difficulty">Difficulty:</label>
-                <select class="form-control" id="select">
-                  <option>Easy</option>
-                  <option>Medium</option>
-                  <option>Hard</option>
-                </select>
+                <label for="exampleFormControlInput1">Task's description:</label>
+                <input type="email" class="form-control" id="task" placeholder="Describe your task">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Due date:</label>
+                <input type="email" class="form-control" id="date" placeholder="dd/mm/yyyy">
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Remind me
+                </label>
               </div>
             </form>
           </div>
