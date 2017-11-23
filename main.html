@@ -14,15 +14,14 @@
     <script>
         var habits = angular.module('habits', ['ngCookies']);
 
-        habits.controller('LoginController', ['$scope', '$cookies'], function ($scope, $cookies) {
+        habits.controller('LoginController', ['$scope', '$cookies', function ($scope, $cookies) {
             $scope.logout = function () {
                 $cookies.remove('uid');
             };
             $scope.uid = $cookies.get('uid');
-            if(angular.isUndefined($scope.uid)){
-                location.path('index.html');
+            if (angular.isUndefined($cookies.get('uid'))) {
             }
-        });
+        }]);
 
         habits.controller('TaskController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
             $scope.uid = 'OfyKF3SaUrSHs9efFFn4VtI48Qx2';
@@ -51,11 +50,11 @@
             $scope.getTasks();
 
             $scope.newTask = function () {
-                const url = urlBase + "new?uid=" + $scope.uid + "&title=" + $scope.title + "&descripcion=" + $scope.description + "&dueDate=" + $scope.dueDate.getTime() + "&reminder=" + $scope.reminder;
+                const url = urlBase + "new?uid=" + $scope.uid + "&title=" + $scope.title + "&descripcion=" + $scope.descripcion + "&dueDate=" + $scope.dueDate.getTime() + "&reminder=" + $scope.reminder;
                 $http.post(url).then(function (response) {
                     console.log(response);
                     $scope.title = '';
-                    $scope.description = '';
+                    $scope.descripcion = '';
                     $scope.dueDate = '';
                     $scope.reminder = '';
                     $('#taskCreate').modal('hide');
@@ -95,11 +94,12 @@
             };
 
             $scope.updateTask = function () {
-                const url = urlBase + "edit?uid=" + $scope.uid + "&tid=" + $scope.taskToEdit + "&title=" + $scope.title + "&descripcion=" + $scope.description + "&dueDate=" + $scope.dueDate.getTime() + "&reminder=" + $scope.reminder;
+                const url = urlBase + "edit?uid=" + $scope.uid + "&tid=" + $scope.taskToEdit + "&title=" + $scope.title + "&descripcion=" + $scope.descripcion + "&dueDate=" + $scope.dueDate.getTime() + "&reminder=" + $scope.reminder;
                 $http.post(url).then(function (response) {
                     console.log(response);
                     $scope.getTasks();
                     //$scope.uid = $cookies.get('uid');
+                    $('#taskCreate').modal('hide');
                 }, function (response) {
                     console.log(response);
                     $scope.data = response.data || 'Request failed';
@@ -111,29 +111,17 @@
             $scope.editTask = function (key) {
                 $scope.taskToEdit = key;
                 $scope.title = $scope.tasks[key].title;
-                $scope.description = $scope.tasks[key].descripcion;
-                $scope.dueDate = $scope.tasks[key].dueDate;
+                $scope.descripcion = $scope.tasks[key].descripcion;
+                // console.log("$scope.tasks[key].dueDate: " + $scope.tasks[key].dueDate);
+                // console.log("$scope.tasks[key].dueDate is a date?: " + ($scope.tasks[key].dueDate instanceof Date));
+                const date1 = new Date();
+                date1.setTime($scope.tasks[key].dueDate);
+                const date2 = new Date();
+                // console.log("date: " + date);
+                $scope.dueDate = date1;
+                console.log("$scope.dueDate: " + $scope.dueDate);
+                console.log("$scope.dueDate2: " + date2);
                 $scope.reminder = $scope.tasks[key].reminder;
-            };
-
-            $scope.getCompletedTasks = function () {
-                var completedTasksCounter = 0;
-                for (var key in $scope.tasks) {
-                    if ($scope.tasks.hasOwnProperty(key)) {
-                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === true ? completedTasksCounter++ : '';
-                    }
-                }
-                return completedTasksCounter
-            };
-
-            $scope.getPendingTasks = function () {
-                var pendingTasksCounter = 0;
-                for (var key in $scope.tasks) {
-                    if ($scope.tasks.hasOwnProperty(key)) {
-                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === undefined ? pendingTasksCounter++ : '';
-                    }
-                }
-                return pendingTasksCounter
             };
 
         }]);
@@ -246,6 +234,32 @@
 
             $scope.getHabits();
 
+
+        }]);
+
+        habits.controller('StatsBarController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+
+            $scope.getCompletedTasks = function () {
+                var completedTasksCounter = 0;
+                for (var key in $scope.tasks) {
+                    if ($scope.tasks.hasOwnProperty(key)) {
+                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === true ? completedTasksCounter++ : '';
+                    }
+                }
+                return completedTasksCounter
+            };
+
+            $scope.getPendingTasks = function () {
+                var pendingTasksCounter = 0;
+                for (var key in $scope.tasks) {
+                    if ($scope.tasks.hasOwnProperty(key)) {
+                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === undefined ? pendingTasksCounter++ : '';
+                    }
+                }
+                return pendingTasksCounter
+            };
+
+
             $scope.getScore = function () {
                 var scoreAcumulator = 0;
                 for (var key in $scope.habits) {
@@ -253,9 +267,15 @@
                         scoreAcumulator += angular.fromJson(angular.toJson($scope.habits[key])).score;
                     }
                 }
-                return scoreAcumulator;
+                if (isNaN(scoreAcumulator)) {
+                    console.log("no soy nan")
+                    return scoreAcumulator;
+                }
+                else {
+                    console.log("soy nan")
+                    return 0;
+                }
             }
-
         }]);
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -299,20 +319,20 @@
     <!-- Container for everything else -->
     <div class="">
         <!-- Stats -->
-        <div class="row statsbar">
-            <div class="col" ng-controller="HabitsController">
+        <div class="row statsbar" ng-controller="StatsBarController">
+            <div class="col">
                 <div class="stats">
                     <h1>{{getScore()}}</h1>
                     <span>Score</span>
                 </div>
             </div>
-            <div class="col" ng-controller="TaskController">
+            <div class="col">
                 <div class="stats">
                     <h1>{{getCompletedTasks()}}</h1>
                     <span>Completed Tasks</span>
                 </div>
             </div>
-            <div class="col" ng-controller="TaskController">
+            <div class="col">
                 <div class="stats">
                     <h1>{{getPendingTasks()}}</h1>
                     <span>Pending Tasks</span>
@@ -424,8 +444,8 @@
                                         <input type="text" class="form-control" id="title" placeholder="Example: Buy some ice cream" ng-model="title">
                                     </div>
                                     <div class="form-group">
-                                        <label for="description">Task's description:</label>
-                                        <input type="text" class="form-control" id="description" placeholder="Describe your task" ng-model="description">
+                                        <label for="descripcion">Task's descripcion:</label>
+                                        <input type="text" class="form-control" id="descripcion" placeholder="Describe your task" ng-model="descripcion">
                                     </div>
                                     <div class="form-group">
                                         <label for="date">Due date:</label>
@@ -481,7 +501,7 @@
                                                 <span class="taskinfo">{{task.title}}</span>
                                             </div>
                                             <div class="row">
-                                                <span class="taskdescription">{{task.descripcion}}</span>
+                                                <span class="taskdescripcion">{{task.descripcion}}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-2" style="text-align: center;">
@@ -512,7 +532,7 @@
                                                 <span class="taskinfo">{{task.title}}</span>
                                             </div>
                                             <div class="row">
-                                                <span class="taskdescription">{{task.descripcion}}</span>
+                                                <span class="taskdescripcion">{{task.descripcion}}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-2" style="text-align: center;">
