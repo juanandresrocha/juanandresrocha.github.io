@@ -13,8 +13,8 @@ function postNewAccount(email, password, name, birthday) {
             'birthday': birthday
         },
         'success': function (data) {
-            console.log("Success");
             $.cookie("uid", data);
+            console.log("Success");
         },
         'error': function (data) {
             console.log("Error");

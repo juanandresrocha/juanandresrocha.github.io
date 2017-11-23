@@ -124,6 +124,27 @@
                 $scope.reminder = $scope.tasks[key].reminder;
             };
 
+
+            $scope.getCompletedTasks = function () {
+                var completedTasksCounter = 0;
+                for (var key in $scope.tasks) {
+                    if ($scope.tasks.hasOwnProperty(key)) {
+                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === true ? completedTasksCounter++ : '';
+                    }
+                }
+                return completedTasksCounter
+            };
+
+            $scope.getPendingTasks = function () {
+                var pendingTasksCounter = 0;
+                for (var key in $scope.tasks) {
+                    if ($scope.tasks.hasOwnProperty(key)) {
+                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === undefined ? pendingTasksCounter++ : '';
+                    }
+                }
+                return pendingTasksCounter
+            };
+
         }]);
 
         habits.controller('HabitsController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
@@ -235,31 +256,6 @@
             $scope.getHabits();
 
 
-        }]);
-
-        habits.controller('StatsBarController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
-
-            $scope.getCompletedTasks = function () {
-                var completedTasksCounter = 0;
-                for (var key in $scope.tasks) {
-                    if ($scope.tasks.hasOwnProperty(key)) {
-                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === true ? completedTasksCounter++ : '';
-                    }
-                }
-                return completedTasksCounter
-            };
-
-            $scope.getPendingTasks = function () {
-                var pendingTasksCounter = 0;
-                for (var key in $scope.tasks) {
-                    if ($scope.tasks.hasOwnProperty(key)) {
-                        angular.fromJson(angular.toJson($scope.tasks[key])).completed === undefined ? pendingTasksCounter++ : '';
-                    }
-                }
-                return pendingTasksCounter
-            };
-
-
             $scope.getScore = function () {
                 var scoreAcumulator = 0;
                 for (var key in $scope.habits) {
@@ -268,15 +264,22 @@
                     }
                 }
                 if (isNaN(scoreAcumulator)) {
-                    console.log("no soy nan")
-                    return scoreAcumulator;
-                }
-                else {
                     console.log("soy nan")
                     return 0;
                 }
+                else {
+                    console.log("no soy nan")
+                    return scoreAcumulator;
+                }
             }
+
+
         }]);
+
+        // habits.controller('StatsBarController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+
+
+        // }]);
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
@@ -319,21 +322,21 @@
     <!-- Container for everything else -->
     <div class="">
         <!-- Stats -->
-        <div class="row statsbar" ng-controller="StatsBarController">
+        <div class="row statsbar" >
             <div class="col">
-                <div class="stats">
+                <div class="stats" ng-controller="HabitsController">
                     <h1>{{getScore()}}</h1>
                     <span>Score</span>
                 </div>
             </div>
             <div class="col">
-                <div class="stats">
+                <div class="stats" ng-controller="TaskController">
                     <h1>{{getCompletedTasks()}}</h1>
                     <span>Completed Tasks</span>
                 </div>
             </div>
             <div class="col">
-                <div class="stats">
+                <div class="stats" ng-controller="TaskController">
                     <h1>{{getPendingTasks()}}</h1>
                     <span>Pending Tasks</span>
                 </div>

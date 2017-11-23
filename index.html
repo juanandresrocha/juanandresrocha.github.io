@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- JQUERY -->
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.cookie.js" type="text/javascript"></script>
     <script src="js/accounts.js"></script>
 
     <!-- Bootstrap CSS -->
@@ -127,10 +128,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="/main.html">
-                        <button type="button" class="btn btn-primary btn-dark btn-round" style="display: block; margin: auto;"
-                            onclick="login()">Login</button>
-                    </a>
+                    <button type="button" class="btn btn-primary btn-dark btn-round" style="display: block; margin: auto;" onclick="login()">Login</button>
                 </div>
             </div>
         </div>
@@ -184,7 +182,8 @@
                     postLoginUser(emailInput.value, password);
                 }
             </script>
-
+        </div>
+    </div>
 </body>
 
 </html>
