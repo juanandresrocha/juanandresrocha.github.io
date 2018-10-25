@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Style -->
+    <style>
+    body{
+      height: 100%;
+    }
+    #map{
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      overflow:hidden;
+      z-index:-1;
+    }
+    </style>
+
+    <title>Centros de Acopio - GDL | Willa </title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand mb-0 h1">Centros de Acopio</span>
+    </nav>
+    <div class="container-fluid h-100">
+      <div id="map" class="row" style="height:100%;">
+        <!-- Mapa -->
+        <script>
+        function initMap() {
+          var GDL = {lat: 20.6738686, lng: -103.3704326};
+          var map = new google.maps.Map(
+              document.getElementById('map'), {zoom: 13, center: GDL});
+          // The markers
+
+          //CUCSH
+          var CUCSHstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">CUCSH</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Escaleras del edificio G.</p>'+
+              '<p>Contacto: Aranzazú Ortiz.</p>'+
+              '</div>'+
+              '</div>';
+          var CUCSHinfo = new google.maps.InfoWindow({
+            content: CUCSHstring
+          });
+          var CUCSH = new google.maps.Marker({
+            position: {lat: 20.6934438, lng: -103.3523046},
+            map: map,
+            title: 'CUCSH'
+          });
+          CUCSH.addListener('click', function() {
+            CUCSHinfo.open(map, CUCSH);
+          });
+
+          //CUCS
+          var CUCSstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">CUCS</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Aulas 5 1/2, entre aulas 205 y 206.</p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var CUCSinfo = new google.maps.InfoWindow({
+            content: CUCSstring
+          });
+          var CUCS = new google.maps.Marker({
+            position: {lat: 20.6870755, lng: -103.3343147},
+            map: map,
+            title: 'CUCS'
+          });
+          CUCS.addListener('click', function() {
+            CUCSinfo.open(map, CUCS);
+          });
+        }
+            </script>
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3T8uFQ4T2-LqVbF-8ioldJNInQhx-SzM&callback=initMap">
+            </script>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
