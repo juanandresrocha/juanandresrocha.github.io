@@ -28,7 +28,10 @@
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
-      <span class="navbar-brand mb-0 h1">Centros de Acopio</span>
+      <span class="navbar-brand mb-0 h1">Huracán Willa - Centros de Acopio GDL</span>
+      <form class="form-inline">
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#ayuda">¿Cómo ayudo?</button>
+      </form>
     </nav>
     <div class="container-fluid h-100">
       <div id="map" class="row" style="height:100%;">
@@ -83,11 +86,312 @@
           CUCS.addListener('click', function() {
             CUCSinfo.open(map, CUCS);
           });
+
+          //CUTonala
+          var CUTonalastring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">CU Tonalá</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Bancas frente al edificio B.</p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var CUTonalainfo = new google.maps.InfoWindow({
+            content: CUTonalastring
+          });
+          var CUTonala = new google.maps.Marker({
+            position: {lat: 20.5668582, lng: -103.2294487},
+            map: map,
+            title: 'CUTonala'
+          });
+          CUTonala.addListener('click', function() {
+            CUTonalainfo.open(map, CUTonala);
+          });
+
+          //CUAAD
+          var CUAADstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">CUAAD</h1>'+
+              '<div id="bodyContent">'+
+              '<p></p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var CUAADinfo = new google.maps.InfoWindow({
+            content: CUAADstring
+          });
+          var CUAAD = new google.maps.Marker({
+            position: {lat: 20.7406005, lng: -103.3143548},
+            map: map,
+            title: 'CUAAD'
+          });
+          CUAAD.addListener('click', function() {
+            CUAADinfo.open(map, CUAAD);
+          });
+
+          //CUCEI
+          var CUCEIstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">CUCEI</h1>'+
+              '<div id="bodyContent">'+
+              '<p></p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var CUCEIinfo = new google.maps.InfoWindow({
+            content: CUCEIstring
+          });
+          var CUCEI = new google.maps.Marker({
+            position: {lat: 20.6570586, lng: -103.3271426},
+            map: map,
+            title: 'CUCEI'
+          });
+          CUCEI.addListener('click', function() {
+            CUCEIinfo.open(map, CUCEI);
+          });
+
+          //UAG
+          var UAGstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">UAG</h1>'+
+              '<div id="bodyContent">'+
+              '<p></p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var UAGinfo = new google.maps.InfoWindow({
+            content: UAGstring
+          });
+          var UAG = new google.maps.Marker({
+            position: {lat: 20.6947103, lng: -103.4203145},
+            map: map,
+            title: 'UAG'
+          });
+          UAG.addListener('click', function() {
+            UAGinfo.open(map, UAG);
+          });
+
+          //ITESM
+          var ITESMstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">Tec de Monterrey</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Grupos estudiantiles, de 8:00 a 18:00 horas.</p>'+
+              '<p>Contacto: Uriel Acosta, Juan Andrés Rocha.</p>'+
+              '</div>'+
+              '</div>';
+          var ITESMinfo = new google.maps.InfoWindow({
+            content: ITESMstring
+          });
+          var ITESM = new google.maps.Marker({
+            position: {lat: 20.7324126, lng: -103.4563325},
+            map: map,
+            title: 'ITESM'
+          });
+          ITESM.addListener('click', function() {
+            ITESMinfo.open(map, ITESM);
+          });
+
+          //UNIVA
+          var UNIVAstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">UNIVA</h1>'+
+              '<div id="bodyContent">'+
+              '<p></p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var UNIVAinfo = new google.maps.InfoWindow({
+            content: UNIVAstring
+          });
+          var UNIVA = new google.maps.Marker({
+            position: {lat: 20.6595512, lng: -103.4215451},
+            map: map,
+            title: 'UNIVA'
+          });
+          UNIVA.addListener('click', function() {
+            UNIVAinfo.open(map, UNIVA);
+          });
+
+          //HCVIEJO
+          var HCVIEJOstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">Hospital Civil (Viejo)</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Área de rehabilitación.</p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var HCVIEJOinfo = new google.maps.InfoWindow({
+            content: HCVIEJOstring
+          });
+          var HCVIEJO = new google.maps.Marker({
+            position: {lat: 20.6884103, lng: -103.3448217},
+            map: map,
+            title: 'HCVIEJO'
+          });
+          HCVIEJO.addListener('click', function() {
+            HCVIEJOinfo.open(map, HCVIEJO);
+          });
+
+          //CLEU
+          var CLEUstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">CLEU</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Departamento de Vinculación Universitaria.</p>'+
+              '<p>Contacto: Por definir.</p>'+
+              '</div>'+
+              '</div>';
+          var CLEUinfo = new google.maps.InfoWindow({
+            content: CLEUstring
+          });
+          var CLEU = new google.maps.Marker({
+            position: {lat: 20.6700598, lng: -103.3929814},
+            map: map,
+            title: 'CLEU'
+          });
+          CLEU.addListener('click', function() {
+            CLEUinfo.open(map, CLEU);
+          });
+
+          //PTOSAOPAULO
+          var PTOSAOPAULOstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">Punto Sāo Paulo</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Previo contacto, <a href="https://www.facebook.com/jardjys">Facebook</a></p>'+
+              '<p>Contacto: Juan Andrés Rocha.</p>'+
+              '</div>'+
+              '</div>';
+          var PTOSAOPAULOinfo = new google.maps.InfoWindow({
+            content: PTOSAOPAULOstring
+          });
+          var PTOSAOPAULO = new google.maps.Marker({
+            position: {lat: 20.7020211, lng: -103.3785442},
+            map: map,
+            title: 'PTOSAOPAULO'
+          });
+          PTOSAOPAULO.addListener('click', function() {
+            PTOSAOPAULOinfo.open(map, PTOSAOPAULO);
+          });
+
         }
             </script>
             <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3T8uFQ4T2-LqVbF-8ioldJNInQhx-SzM&callback=initMap">
             </script>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ayuda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Cómo ayudo?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            El Huracán Willa dejó muchos estragos a su paso por el norte de Nayarit y el sur de Sinaloa, por lo que requerimos su ayuda urgente. Abajo puedes encontrar algunas respuestas.
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      ¿Con qué puedo ayudar?
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p>Se necesitan víveres básicos, como:</p>
+                    <ul>
+                      <li>Agua embotellada</li>
+                      <li>Alimentos enlatados y no perecederos</li>
+                      <li>Toallas sanitarias</li>
+                      <li>Papel higiénico</li>
+                      <li>Medicamentos no caducados</li>
+                      <li>Sábanas y ropa</li>
+                      <li>Repelente de insectos</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      ¿A dónde va esta ayuda?
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Estamos trabajando para que llegue a Escuinapa, Tecuala, Acaponeta, Tuxpan, Ruiz y pueblos circunvecinos. Si conoces de algún otro lugar que requiera asistencia, <a href="mailto:jardjys@me.com">contáctanos.</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      ¿Quiénes somos?
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Somos un grupo de jóvenes preocupados por nuestras familias y amigos, buscando ayudar de la mejor manera posible.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingFour">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      ¿Puedo ayudar de alguna otra forma?
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                  <div class="card-body">
+                    ¡Claro que sí! <a href="mailto:jardjys@me.com">Contáctanos</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingFive">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      Sé de un Centro de Acopio que no está en el mapa
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Infórmanos de él, y lo agregamos lo más pronto posible: <a href="mailto:jardjys@me.com">Contáctanos</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Optional JavaScript -->
