@@ -27,12 +27,24 @@
     <title>Centros de Acopio - GDL | Willa </title>
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <span class="navbar-brand mb-0 h1">Huracán Willa - Centros de Acopio GDL</span>
-      <form class="form-inline">
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#ayuda">¿Cómo ayudo?</button>
-      </form>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Huracán Willa</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Centros de Acopio en Guadalajara</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#ayuda">¿Cómo ayudo?</button>
+        </form>
+      </div>
     </nav>
+
     <div class="container-fluid h-100">
       <div id="map" class="row" style="height:100%;">
         <!-- Mapa -->
@@ -376,7 +388,7 @@
                 <div class="card-header" id="headingFive">
                   <h5 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                      Sé de un Centro de Acopio que no está en el mapa
+                      Falta un centro de acopio.
                     </button>
                   </h5>
                 </div>
