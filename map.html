@@ -71,7 +71,7 @@
               '<h1 id="firstHeading" class="firstHeading">CUCSH</h1>'+
               '<div id="bodyContent">'+
               '<p>Escaleras del edificio G.</p>'+
-              '<p>Contacto: Aranzazú Ortiz.</p>'+
+              '<p>Contacto: <a href="https://www.facebook.com/AranzaOrtizM">Aranzazú Ortiz</a>.</p>'+
               '</div>'+
               '</div>';
           var CUCSHinfo = new google.maps.InfoWindow({
@@ -194,6 +194,28 @@
           });
           UAG.addListener('click', function() {
             UAGinfo.open(map, UAG);
+          });
+          
+          //CUCEA
+          var CUCEAstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">CUCEA</h1>'+
+              '<div id="bodyContent">'+
+              '<p></p>'+
+              '<p>Contacto: <a href="https://www.facebook.com/MonshiiGomez">Montserrat Gómez</a></p>'+
+              '</div>'+
+              '</div>';
+          var CUCEAinfo = new google.maps.InfoWindow({
+            content: CUCEAstring
+          });
+          var CUCEA = new google.maps.Marker({
+            position: {lat: 20.7407657, lng: -103.3830412},
+            map: map,
+            title: 'CUCEA'
+          });
+          CUCEA.addListener('click', function() {
+            CUCEAinfo.open(map, CUCEA);
           });
 
           //ITESM
