@@ -327,6 +327,97 @@
           PTOSAOPAULO.addListener('click', function() {
             PTOSAOPAULOinfo.open(map, PTOSAOPAULO);
           });
+          
+          //VETTERRA
+          var VETTERRAstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">Centro Veterinario Terranova</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Avenida Terranova 495-7, Plaza Terranova Plus</p>'+
+              '<p>Contacto: Zyanya Zapata.</p>'+
+              '</div>'+
+              '</div>';
+          var VETTERRAinfo = new google.maps.InfoWindow({
+            content: VETTERRAstring
+          });
+          var VETTERRA = new google.maps.Marker({
+            position: {lat: 20.6725804, lng: -103.4250846},
+            map: map,
+            title: 'VETTERRA'
+          });
+          VETTERRA.addListener('click', function() {
+            VETTERRAinfo.open(map, VETTERRA);
+          });
+
+          //PETEXPERT
+          var PETEXPERTstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">PETXPERT</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Avenida Beethoven 5127, Col. La Estancia</p>'+
+              '<p>Contacto: Zyanya Zapata.</p>'+
+              '</div>'+
+              '</div>';
+          var PETEXPERTinfo = new google.maps.InfoWindow({
+            content: PETEXPERTstring
+          });
+          var PETEXPERT = new google.maps.Marker({
+            position: {lat: 20.668579, lng: -103.4284597},
+            map: map,
+            title: 'PETEXPERT'
+          });
+          PETEXPERT.addListener('click', function() {
+            PETEXPERTinfo.open(map, PETEXPERT);
+          });
+
+          
+          //DANVET
+          var DANVETstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">DANVET</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Madero 699, Local 22, Chapala.</p>'+
+              '<p>Contacto: Zyanya Zapata.</p>'+
+              '</div>'+
+              '</div>';
+          var DANVETinfo = new google.maps.InfoWindow({
+            content: DANVETstring
+          });
+          var DANVET = new google.maps.Marker({
+            position: {lat: 20.3009303, lng: -103.1923163},
+            map: map,
+            title: 'DANVET'
+          });
+          DANVET.addListener('click', function() {
+            DANVETinfo.open(map, DANVET);
+          });
+
+          
+          //ECOPET
+          var ECOPETstring = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">ECOPET</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Batalla de Zacatecas 3320, esquina con Patria, Residencial el Tapatío</p>'+
+              '<p>Contacto: Zyanya Zapata.</p>'+
+              '</div>'+
+              '</div>';
+          var ECOPETinfo = new google.maps.InfoWindow({
+            content: ECOPETstring
+          });
+          var ECOPET = new google.maps.Marker({
+            position: {lat: 20.6148518, lng: -103.3197501},
+            map: map,
+            title: 'ECOPET'
+          });
+          ECOPET.addListener('click', function() {
+            ECOPETinfo.open(map, ECOPET);
+          });
+
 
         }
             </script>
